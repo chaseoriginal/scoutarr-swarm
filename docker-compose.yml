@@ -1,0 +1,22 @@
+services:
+  scoutarr:
+    image: ghcr.io/sufxgit/scoutarr:latest
+    container_name: scoutarr-swarm
+    restart: unless-stopped
+    ports:
+      - target: 5839
+        published: 5839
+        protocol: tcp
+        mode: host        
+    deploy:
+      placement:
+        constraints:
+          - node.labels.deployment.target.scoutarr == true
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /var/lib/docker/volumes/scoutarr-swarm:/app/config
+    environment:
+      - NODE_ENV=production
+      - TZ=America/Chicago
+      - LOG_LEVEL=info
