@@ -1,6 +1,6 @@
 services:
   scoutarr:
-    image: ghcr.io/sufxgit/scoutarr:latest
+    image: 1.1.7
     container_name: scoutarr-swarm
     restart: unless-stopped
     ports:
